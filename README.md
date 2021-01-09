@@ -7,55 +7,28 @@
 - need library
 
 ```
-beautifulsoup4
+sys
+re
+subprocess
+BeautifulSoup
 requests
-urllib3
+pyperclip
 ```
 
 # How to use
 
 Scraping single page
+- Replace URL to any of the URL
 
 ```
-python py3_get_title.py URL
+python conv_url_title_to_mkdwn2.py URL
 ```
 
-Scraping some pages (from txt-file)
+Scraping some pages (from clipboard)
+- Copy some URL's strings to the clipboard
+- Do it this command
 
 ```
-python py3_get_title.py file.txt
+python conv_url_title_to_mkdwn2.py
 ```
-
-# Ex
-
-- Create necessary file (Be careful about file duplication)
-
-```
-cd ~/
-touch reference_url_list.txt
-```
-
-- Write the following settings to your shell-rc (Please correct if necessary .py-file path)
-
-```
-function refgeturls() {
-  if [[ -n $1 && $1 =~ _url_list.txt ]]; then
-    command pbpaste > $1; command cat $1; command printf "\n---------->>\n"
-    command python3 ~/web_title_markdown_converter/py3_get_title.py $1
-  else
-    echo "Please specify the file to the argument"
-  fi
-}
-```
-
-- Save multiple URLs to the clipboard
-
-
-- Do it this command (At your own risk)
-
-```
-refgeturls reference_url_list.txt
-```
-
-
 
