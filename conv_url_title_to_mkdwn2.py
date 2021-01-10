@@ -75,17 +75,28 @@ def output_arg_url(BDOURL):
         return BDOURL
 
 
+
 def store_url_to_clipboard(cp_url_words):
     """
    MarkDown形式に書き換えたURL文字列内容をクリップボードに保存
     """
-    if sys.platform == "darwin":
-        text = cp_url_words.encode('utf-8', 'ignore') if isinstance(cp_url_words, str) else ''
+    text = cp_url_words.encode('utf-8', 'ignore') if isinstance(cp_url_words, str) else ''
+    wsl2_path_pattern = "^\/mnt\/"
+
+    if sys.platform == "darwin": # MacOS X
+        #text = cp_url_words.encode('utf-8', 'ignore') if isinstance(cp_url_words, str) else ''
         p_b = subprocess.Popen(['pbcopy'], stdin=subprocess.PIPE)
-        p_b.stdin.write(text)
-        p_b.stdin.close()
+
+    if(sys.platform == "linux" or sys.platform == "linux2"):
+        if(re.match(wsl2_path_pattern, os.environ['HOME'])):
+            # WSL2 Windows
+            p_b = subprocess.Popen(['clip.exe'], stdin=subprocess.PIPE)
+
+    p_b.stdin.write(text)
+    p_b.stdin.close()
 
 #print(FLAG)
+
 
 
 def decoration_lines():
