@@ -9,6 +9,7 @@
 ```
 sys
 re
+os
 subprocess
 BeautifulSoup
 requests

@@ -3,6 +3,7 @@
 
 import sys
 import re
+import os
 import subprocess
 from bs4 import BeautifulSoup as bs4
 import requests as req
